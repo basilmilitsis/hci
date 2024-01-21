@@ -1,17 +1,14 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Dashboard } from './components/Dashboard';
-import { VisitResults } from './components/VisitResults';
-import { VisitFilters } from './components/VisitFilters';
-import { VisitResponse } from './apiSchema/schema';
+import { Dashboard } from '../components/framework/Dashboard';
+import { VisitResults } from '../components/VisitResults';
+import { VisitFilters } from '../components/VisitFilters';
+import { VisitResponse } from '../apiSchema/schema';
 
-function App() {
-
+export const VisitsPage: React.FC = () => {
     const [searchPatientName, setSearchPatientName] = useState<string>("");
     const [searchHospitalName, setSearchHospitalName] = useState<string>("");
-
-    console.log("=====> ", import.meta.env);
 
     const { data: visitData, isLoading, error } = useQuery({
         queryKey: ['visits', searchPatientName, searchHospitalName],
@@ -41,4 +38,3 @@ function App() {
         </Dashboard>
     );
 }
-export default App;
